@@ -1,0 +1,179 @@
+<form [formGroup]="dataEntryForm" novalidate (ngSubmit)="onSubmit(dataEntryForm)">
+  <section class="form-block">
+    <label>Section 1:</label>
+
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label>PogSingle</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <tag-input formControlName="PogSingle" [maxItems]="1" [ripple]="false" [theme]="'bootstrap'" [secondaryPlaceholder]="'Search in Directory'"
+          [onlyFromAutocomplete]="true" [onTextChangeDebounce]="250">
+          <tag-input-dropdown [minimumTextLength]="3" [autocompleteObservable]="getMatchingPeople">
+            <ng-template let-item="item" let-index="index">
+              {{ item.display }}
+            </ng-template>
+          </tag-input-dropdown>
+        </tag-input>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label>PogMulti</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <tag-input class="form-control" formControlName="PogMulti" [ripple]="false" [theme]="'bootstrap'" [secondaryPlaceholder]="'Search in Directory'"
+          [onlyFromAutocomplete]="true" [onTextChangeDebounce]="250">
+          <tag-input-dropdown [minimumTextLength]="3" [autocompleteObservable]="getMatchingPeople">
+            <ng-template let-item="item" let-index="index">
+              {{ item.display }}
+            </ng-template>
+          </tag-input-dropdown>
+        </tag-input>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label>Title</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 invalid">
+        <input type="text" class="form-control" formControlName="Title" placeholder="Name">
+        <app-field-error-display [displayError]="TitleError.hasError('required', ['touched'])">
+          <div ngxErrors="Title" #TitleError="ngxErrors">
+            <div ngxError="required" [when]="['touched']">
+              {{ validationMessages['Title'].required }}
+            </div>
+          </div>
+        </app-field-error-display>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label>BirthDate</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <app-datepicker-clear-button [formGroup]="dataEntryForm" [fieldName]="'BirthDate'"></app-datepicker-clear-button>
+        <p-calendar class="form-control" formControlName="BirthDate"></p-calendar>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label>Country</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <tag-input formControlName="Country" [maxItems]="1" [ripple]="false" [theme]="'bootstrap'" [secondaryPlaceholder]="'Search Countries List'"
+          [onlyFromAutocomplete]="true" [onTextChangeDebounce]="250">
+          <tag-input-dropdown [minimumTextLength]="3" [autocompleteObservable]="getMatchingCountries">
+            <ng-template let-item="item" let-index="index">
+              {{ item.display }}
+            </ng-template>
+          </tag-input-dropdown>
+        </tag-input>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label>FavoriteCountries</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <tag-input formControlName="FavoriteCountries" [ripple]="false" [theme]="'bootstrap'" [secondaryPlaceholder]="'Search Countries List'"
+          [onlyFromAutocomplete]="true" [onTextChangeDebounce]="250">
+          <tag-input-dropdown [minimumTextLength]="3" [autocompleteObservable]="getMatchingCountries">
+            <ng-template let-item="item" let-index="index">
+              {{ item.display }}
+            </ng-template>
+          </tag-input-dropdown>
+        </tag-input>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label>MLOT</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <textarea formControlName="MLOT" rows="5"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label>Choice</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="select">
+          <select formControlName="Choice">
+            <option value=""></option>
+            <option value="Air Force">Air Force</option>
+            <option value="Army">Army</option>
+            <option value="Navy">Navy</option>
+            <option value="Marines">Marines</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label>ChoiceRadio</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="radio">
+          <input type="radio" name="ChoiceRadio" value="Male" id="Male" formControlName="ChoiceRadio">
+          <label for="Male">Male</label>
+        </div>
+        <div class="radio">
+          <input type="radio" name="ChoiceRadio" value="Female" id="Female" formControlName="ChoiceRadio">
+          <label for="Female">Female</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label>ChoiceRadio</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <clr-checkbox *ngFor="let cb of dataEntryForm.get('ChoiceMulti').controls; let i=index" [formControl]="cb">
+          {{choiceFields['ChoiceMulti'][i]}}
+        </clr-checkbox>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label>Number</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <input type="text" class="form-control" type="number" formControlName="Number">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label>Currency</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <input type="text" class="form-control" type="number" formControlName="Currency">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+        <label>Yes or No</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <clr-checkbox formControlName="YesNo">Yes</clr-checkbox>
+      </div>
+    </div>
+
+    
+
+  </section>
+  <button type="submit" class="btn btn-primary">Ok</button>
+</form>

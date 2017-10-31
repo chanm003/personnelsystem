@@ -1,0 +1,95 @@
+/* You can add global styles to this file, and also import other style files */
+delete-icon span {
+    display:inline;
+}
+
+tag-input-form form {
+    padding: 0;
+}
+
+tag-input-form form input[type=text]:not([readonly]):focus {
+    border: none;
+    background: none;
+}
+
+tag[_ngcontent-c0] {
+    padding: 0rem 0.45rem !important;
+}
+
+tag-input {
+    margin-top:0px !important;
+    margin-bottom:0px !important;
+}
+
+.ng2-tag-input[_ngcontent-c0]{
+    padding: 0 !important;
+    min-height: 24px !important;
+}
+
+.ng2-tag-input__text-input[_ngcontent-c3] {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.ng2-tag-input__text-input[_ngcontent-c4]{
+    margin: 0px !important;
+    height:35px !important;
+}
+
+.alert {
+    margin-top: 0;
+}
+
+.alert-icon {
+    height: 33px;
+}
+
+.form .form-group .btn, .form .form-group .checkbox, .form .form-group .checkbox-inline, .form .form-group .radio, .form .form-group .radio-inline, .form .form-group .select, .form .form-group .toggle-switch, .form .form-group .tooltip-validation, .form .form-group a, .form .form-group button, .form .form-group input[type=button], .form .form-group input[type=date], .form .form-group input[type=datetime-local], .form .form-group input[type=email], .form .form-group input[type=number], .form .form-group input[type=password], .form .form-group input[type=submit], .form .form-group input[type=tel], .form .form-group input[type=text], .form .form-group input[type=time], .form .form-group input[type=url], .form .form-group label, .form .form-group span, .form .form-group textarea, form .form-group .btn, form .form-group .checkbox, form .form-group .checkbox-inline, form .form-group .radio, form .form-group .radio-inline, form .form-group .select, form .form-group .toggle-switch, form .form-group .tooltip-validation, form .form-group a, form .form-group button, form .form-group input[type=button], form .form-group input[type=date], form .form-group input[type=datetime-local], form .form-group input[type=email], form .form-group input[type=number], form .form-group input[type=password], form .form-group input[type=submit], form .form-group input[type=tel], form .form-group input[type=text], form .form-group input[type=time], form .form-group input[type=url], form .form-group label, form .form-group span, form .form-group textarea {
+    margin-bottom: 3px;
+    margin-right: 0px;
+}
+
+.ic-datepicker .cell, .ic-datepicker .ic-datepicker-dates .date span {
+	margin: 0;
+}
+
+.ic-datepicker .ic-datepicker-header-bar .header-title {
+    color: rgb(255, 255, 255);
+}
+
+.ic-datepicker-container > input[readonly] {
+    background-color: transparent !important;
+    
+}
+
+.ic-datepicker-container {
+    height: 35px;
+    width: 100%;
+    z-index: 50;
+}
+
+.ic-datepicker.bottom {
+    top: 36px !important;
+}
+
+.ic-datepicker-container {
+    border-bottom: solid 1px rgb(154, 154, 154);    
+}
+
+textarea {
+    overflow-x: hidden;
+}
+
+.ui-calendar, .ui-calendar .ui-inputtext {
+	width: 100%;
+}
+
+.ui-datepicker.ui-widget .ui-datepicker-calendar td a, .ui-datepicker.ui-widget .ui-datepicker-calendar thead th, .ui-datepicker th {
+    padding: 3px;
+    margin: 0px;
+}
+
+.ui-inputtext.ui-state-focus, .ui-inputtext:focus, .ui-inputtext.ui-state-focus, .ui-inputtext:focus{
+    box-shadow: none;
+    border: none;
+}

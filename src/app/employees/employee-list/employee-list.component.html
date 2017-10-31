@@ -1,0 +1,19 @@
+<h1>
+  Employee List
+</h1>
+
+<clr-datagrid>
+  <clr-dg-column>ID</clr-dg-column>
+  <clr-dg-column>Title</clr-dg-column>
+  <clr-dg-column>Created By</clr-dg-column>
+
+  <clr-dg-row *ngFor="let item of employees">
+      <clr-dg-cell>
+        <a href="" [routerLink]="['/employees', item.Id]">{{item.Id}}</a>
+      </clr-dg-cell>
+      <clr-dg-cell>{{item.Title}}</clr-dg-cell>
+      <clr-dg-cell>{{item.Author.Title}}</clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>{{employees?.length}} employees</clr-dg-footer>
+</clr-datagrid>

@@ -1,0 +1,5 @@
+<h1>
+  {{ isNewForm() ? 'Add an Employee' : 'Edit Existing Employee' }}
+</h1>
+<app-employee-form [employee]="itemBeingEdited" (submitButtonClicked)="save($event)"></app-employee-form>
+
