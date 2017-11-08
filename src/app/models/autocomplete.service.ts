@@ -3,13 +3,13 @@ import { SharepointContextService, SharePointItem, KeywordSearchService, ODataQu
 import { Employee } from './employee.model';
 import { environment } from '../../environments/environment';
 import * as _ from 'lodash';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserDirectoryKeywordSearchService {
 
-  constructor(private http: Http, private sharepointContextService: SharepointContextService,
+  constructor(private http: HttpClient, private sharepointContextService: SharepointContextService,
     private keywordSearchService: KeywordSearchService) {}
 
   search = (text: string): Observable<Response> => {
@@ -19,8 +19,8 @@ export class UserDirectoryKeywordSearchService {
         fieldsToSelect: ['Id', 'Name', 'WorkEmail'],
         fieldsToSearch: ['Name'],
         url: `${webUrl}/_vti_bin/ListData.svc/UserInformationList`,
-        mapFunc: (resp: Response) => {
-            const results = resp.json().d.results;
+        mapFunc: (resp: any) => {
+            const results = resp.d.results;
             return results.map((item: any) => {
                 return {
                     Id: item.Id,
@@ -39,7 +39,7 @@ export class UserDirectoryKeywordSearchService {
 @Injectable()
 export class CountriesKeywordSearchService {
 
-  constructor(private http: Http, private sharepointContextService: SharepointContextService,
+  constructor(private http: HttpClient, private sharepointContextService: SharepointContextService,
     private keywordSearchService: KeywordSearchService) {}
 
 
@@ -50,8 +50,8 @@ export class CountriesKeywordSearchService {
         fieldsToSelect: ['Id', 'Title'],
         fieldsToSearch: ['Title'],
         url: `${webUrl}/_api/web/lists/getByTitle('Countries')/items`,
-        mapFunc: (resp: Response) => {
-            const results = resp.json().value;
+        mapFunc: (resp: any) => {
+            const results = resp.value;
             return results.map((item: any) => {
                 return {
                     Id: item.Id,
