@@ -17,7 +17,7 @@ export class Employee extends SharePointItem {
 
     @select('PogSingle/EMail,PogSingle/Id,PogSingle/Title')
     @expand('PogSingle')
-    @parser({ parser: 'Lookup', lookupColumnName: 'Title', isReadOnly: false })
+    @parser({ parser: 'Lookup', lookupColumnName: 'Title', isReadOnly: false, parseLookupColumnAsArray: true })
     PogSingle: { Id: number, Title: string, EMail: string };
 
     @select('PogMulti/Id,PogMulti/Title')
@@ -31,7 +31,7 @@ export class Employee extends SharePointItem {
 
     @select('Country/Id,Country/Title')
     @expand('Country')
-    @parser({ parser: 'Lookup', lookupColumnName: 'Title', isReadOnly: false })
+    @parser({ parser: 'Lookup', lookupColumnName: 'Title', isReadOnly: false, parseLookupColumnAsArray: true })
     Country: { Id: number, Title: string };
 
     @select('FavoriteCountries/Id,FavoriteCountries/Title')
@@ -77,10 +77,10 @@ export class Employee extends SharePointItem {
         const itemToSave = new Employee();
         itemToSave.Id = id;
         itemToSave.Title = fg.value.Title;
-        itemToSave.PogSingle = (fg.value.PogSingle && fg.value.PogSingle.length) ? fg.value.PogSingle[0] : null;
+        itemToSave.PogSingle = fg.value.PogSingle;
         itemToSave.PogMulti = fg.value.PogMulti;
         itemToSave.BirthDate = fg.value.BirthDate;
-        itemToSave.Country = (fg.value.Country && fg.value.Country.length) ? fg.value.Country[0] : null;;
+        itemToSave.Country = fg.value.Country;
         itemToSave.FavoriteCountries = fg.value.FavoriteCountries;
         itemToSave.MLOT = fg.value.MLOT;
         itemToSave.Choice = fg.value.Choice;
@@ -105,10 +105,10 @@ export class Employee extends SharePointItem {
     toFormGroup(fb: FormBuilder): FormGroup {
         return fb.group({
             Title: [this.Title || '', [Validators.required]],
-            PogSingle: [(!!this.PogSingle) ? [this.PogSingle] : [], []],
+            PogSingle: [(!!this.PogSingle) ? this.PogSingle : [], []],
             PogMulti: [this.PogMulti || [], []],
             BirthDate: [(this.BirthDate) ? this.BirthDate : null, []],
-            Country: [(!!this.Country) ? [this.Country] : [], []],
+            Country: [(!!this.Country) ? this.Country : [], []],
             FavoriteCountries: [this.FavoriteCountries || [], []],
             MLOT: [this.MLOT || '', []],
             Choice: [this.Choice || '', []],
