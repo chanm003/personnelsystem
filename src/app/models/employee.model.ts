@@ -1,10 +1,11 @@
-import { SharePointItem, select, expand, parser } from 'sp-pnpjs-utility';
+import { SharePointItem, select, expand, parser, listName } from 'sp-pnpjs-utility';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 
+
+@listName('Personnel')
 export class Employee extends SharePointItem {
-    static listName = 'Personnel';
     static validationMessages = {
         Title: {
             required: `Title is required.`
@@ -12,59 +13,59 @@ export class Employee extends SharePointItem {
     };
 
     @select()
-    @parser({ isReadOnly: false })
+    @parser()
     Title: string;
 
     @select('PogSingle/EMail,PogSingle/Id,PogSingle/Title')
     @expand('PogSingle')
-    @parser({ parser: 'Lookup', lookupColumnName: 'Title', isReadOnly: false, parseLookupColumnAsArray: true })
+    @parser({ parser: 'Lookup', lookupColumnName: 'Title', parseLookupColumnAsArray: true })
     PogSingle: { Id: number, Title: string, EMail: string };
 
     @select('PogMulti/Id,PogMulti/Title')
     @expand('PogMulti')
-    @parser({ parser: 'LookupMulti', lookupColumnName: 'Title', isReadOnly: false })
+    @parser({ parser: 'LookupMulti', lookupColumnName: 'Title' })
     PogMulti: { Id: number, Title: string, EMail: string }[];
 
     @select()
-    @parser({ parser: 'DateTime', isReadOnly: false })
+    @parser({ parser: 'DateTime' })
     BirthDate: Date;
 
     @select('Country/Id,Country/Title')
     @expand('Country')
-    @parser({ parser: 'Lookup', lookupColumnName: 'Title', isReadOnly: false, parseLookupColumnAsArray: true })
+    @parser({ parser: 'Lookup', lookupColumnName: 'Title', parseLookupColumnAsArray: true })
     Country: { Id: number, Title: string };
 
     @select('FavoriteCountries/Id,FavoriteCountries/Title')
     @expand('FavoriteCountries')
-    @parser({ parser: 'LookupMulti', lookupColumnName: 'Title', isReadOnly: false })
+    @parser({ parser: 'LookupMulti', lookupColumnName: 'Title' })
     FavoriteCountries: { Id: number, Title: string }[];
 
     @select()
-    @parser({ isReadOnly: false })
+    @parser()
     MLOT: string;
 
     @select()
-    @parser({ isReadOnly: false })
+    @parser()
     Choice: string;
 
     @select()
-    @parser({ isReadOnly: false })
+    @parser()
     ChoiceRadio: string;
 
     @select()
-    @parser({ parser: 'MultiChoice', isReadOnly: false })
+    @parser({ parser: 'MultiChoice' })
     ChoiceMulti: string[];
 
     @select()
-    @parser({ isReadOnly: false })
+    @parser()
     Number: number;
 
     @select()
-    @parser({ isReadOnly: false })
+    @parser()
     Currency: number;
 
     @select()
-    @parser({ isReadOnly: false })
+    @parser()
     YesNo: boolean;
 
     static get choiceFields() {
